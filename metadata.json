@@ -1,0 +1,21 @@
+{
+  "KPackageStructure": "Plasma/Applet",
+  "KPlugin": {
+    "Authors": [
+      {
+        "Name": "Chris"
+      }
+    ],
+    "Category": "System Information",
+    "Description": "Display Claude Code, OpenAI Codex, and Google Gemini CLI usage (session & weekly limits) in your panel.",
+    "EnabledByDefault": true,
+    "Icon": "agent-usage-widget",
+    "Id": "org.kde.plasma.agentusage",
+    "License": "GPL-3.0-or-later",
+    "Name": "Agent Usage",
+    "Version": "1.0.0",
+    "Website": "https://github.com/izll/plasma-claude-usage"
+  },
+  "X-Plasma-API-Minimum-Version": "6.0",
+  "X-Plasma-Provides": []
+}

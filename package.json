@@ -1,0 +1,6 @@
+{
+    "name": "plasma-agent-usage-tests",
+    "private": true,
+    "type": "module",
+    "description": "Marks the .js sources as ES modules so Node can import them for tests. Not part of the plasmoid package."
+}

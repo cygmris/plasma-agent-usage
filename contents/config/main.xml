@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+
+    <group name="General">
+        <entry name="language" type="String">
+            <label>UI Language</label>
+            <default>system</default>
+        </entry>
+        <entry name="refreshInterval" type="Int">
+            <label>Refresh interval in minutes</label>
+            <default>5</default>
+        </entry>
+
+        <!-- Provider toggles -->
+        <entry name="enableClaude" type="Bool">
+            <label>Enable Claude provider</label>
+            <default>true</default>
+        </entry>
+        <entry name="enableCodex" type="Bool">
+            <label>Enable Codex provider</label>
+            <default>true</default>
+        </entry>
+        <entry name="enableGemini" type="Bool">
+            <label>Enable Gemini provider</label>
+            <default>true</default>
+        </entry>
+        <!-- Gemini opt-in: use the official retrieveUserQuota endpoint (account-ban risk) -->
+        <entry name="geminiUseEndpoint" type="Bool">
+            <label>Use Gemini official quota endpoint (opt-in, ban risk)</label>
+            <default>false</default>
+        </entry>
+        <entry name="geminiProject" type="String">
+            <label>Gemini project id for the quota endpoint (optional)</label>
+            <default></default>
+        </entry>
+
+        <entry name="panelLayout" type="String">
+            <label>Panel layout direction (horizontal or vertical)</label>
+            <default>horizontal</default>
+        </entry>
+        <entry name="showIcon" type="Bool">
+            <label>Show provider icon in panel</label>
+            <default>true</default>
+        </entry>
+        <entry name="panelStyle" type="String">
+            <label>Panel display style (text, circular or bar)</label>
+            <default>text</default>
+        </entry>
+        <entry name="backgroundOpacity" type="Double">
+            <label>Background opacity (0.0 = transparent, 1.0 = opaque)</label>
+            <default>1.0</default>
+        </entry>
+    </group>
+</kcfg>
