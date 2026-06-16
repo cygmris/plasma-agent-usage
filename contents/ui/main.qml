@@ -300,12 +300,16 @@ PlasmoidItem {
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
         Layout.minimumHeight: Kirigami.Units.gridUnit * 14
         Layout.preferredWidth: Kirigami.Units.gridUnit * 16
-        // Grow the popup with the number of enabled providers so every section
-        // (including the last one) is visible — the base sized it for one provider.
-        Layout.preferredHeight: Math.min(Kirigami.Units.gridUnit * (6 + Math.max(root.controllers.length, 1) * 9), Kirigami.Units.gridUnit * 44)
+        // Size the popup to the ACTUAL content height so every provider section is
+        // visible by default (no manual resize). Capped so it stays on-screen.
+        implicitHeight: contentCol.implicitHeight + Kirigami.Units.largeSpacing * 2
+        Layout.preferredHeight: Math.min(implicitHeight, Kirigami.Units.gridUnit * 48)
 
         ColumnLayout {
-            anchors.fill: parent
+            id: contentCol
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
             anchors.margins: Kirigami.Units.largeSpacing
             spacing: Kirigami.Units.mediumSpacing
 
