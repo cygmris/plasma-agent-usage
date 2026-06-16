@@ -91,7 +91,7 @@ PlasmoidItem {
     // Absolute path to the Gemini helper, for config.scriptPath injection.
     // DataSource runs a shell, so strip the file:// prefix to a local path.
     readonly property string geminiScriptPath:
-        Qt.resolvedUrl("code/gemini_count.py").toString().replace("file://", "")
+        Qt.resolvedUrl("../code/gemini_count.py").toString().replace("file://", "")
 
     // ---- Controllers (one per enabled provider) ----
     // This Spec ships the Claude, Codex and Gemini adapters.
@@ -300,7 +300,9 @@ PlasmoidItem {
         Layout.minimumWidth: Kirigami.Units.gridUnit * 14
         Layout.minimumHeight: Kirigami.Units.gridUnit * 14
         Layout.preferredWidth: Kirigami.Units.gridUnit * 16
-        Layout.preferredHeight: Kirigami.Units.gridUnit * 18
+        // Grow the popup with the number of enabled providers so every section
+        // (including the last one) is visible — the base sized it for one provider.
+        Layout.preferredHeight: Math.min(Kirigami.Units.gridUnit * (6 + Math.max(root.controllers.length, 1) * 9), Kirigami.Units.gridUnit * 44)
 
         ColumnLayout {
             anchors.fill: parent
