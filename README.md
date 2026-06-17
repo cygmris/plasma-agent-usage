@@ -2,7 +2,15 @@
 
 A KDE Plasma 6 panel widget that shows your **AI coding agent** usage side‑by‑side: **Claude Code**, **OpenAI Codex**, and **Google Gemini CLI** — session/weekly limits, reset countdowns, and per‑model breakdown.
 
-![Agent Usage popup](screenshots/agent-usage.png)
+![Agent Usage on the KDE panel](screenshots/on-panel.png)
+
+*The compact readout sits in your panel bar; click it for the full popup — drop it on any Plasma 6 panel. (Screenshots use mock data.)*
+
+<details><summary>Popup close-up</summary>
+
+![Popup detail](screenshots/agent-usage.png)
+
+</details>
 
 ## Features
 
