@@ -14,7 +14,7 @@
     "License": "GPL-3.0-or-later",
     "Name": "Agent Usage",
     "Version": "1.0.0",
-    "Website": "https://github.com/izll/plasma-claude-usage"
+    "Website": "https://github.com/cygmris/plasma-agent-usage"
   },
   "X-Plasma-API-Minimum-Version": "6.0",
   "X-Plasma-Provides": []
