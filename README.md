@@ -37,6 +37,14 @@ A KDE Plasma 6 panel widget that shows your **AI coding agent** usage side‑by�
 
 ## Installation
 
+### From the KDE Store (easiest)
+
+Available on the KDE Store: **[Agent Usage](https://store.kde.org/p/2365328/)**.
+
+Right‑click your panel → **Add Widgets…** → **Get New Widgets…** → **Download New Plasma Widgets…** → search **Agent Usage** → Install.
+
+### From source
+
 ```bash
 git clone https://github.com/cygmris/plasma-agent-usage.git
 cd plasma-agent-usage
