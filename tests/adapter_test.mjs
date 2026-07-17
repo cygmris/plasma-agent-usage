@@ -187,4 +187,31 @@ test("parseUsage 500 -> error state", () => {
     assert.equal(m.state, STATE.error);
 });
 
+// 2026 API schema: legacy seven_day_<model> keys are null; per-model weekly
+// usage now lives in limits[] as weekly_scoped entries with scope.model.
+const SAMPLE_200_LIMITS = JSON.stringify({
+    five_hour: { utilization: 92.0, resets_at: "2026-07-18T00:09:59+00:00" },
+    seven_day: { utilization: 46.0, resets_at: "2026-07-18T14:59:59+00:00" },
+    seven_day_sonnet: null,
+    seven_day_opus: null,
+    limits: [
+        { kind: "session", group: "session", percent: 92, resets_at: "2026-07-18T00:09:59+00:00", scope: null },
+        { kind: "weekly_all", group: "weekly", percent: 46, resets_at: "2026-07-18T14:59:59+00:00", scope: null },
+        { kind: "weekly_scoped", group: "weekly", percent: 9, resets_at: "2026-07-18T14:59:59+00:00",
+          scope: { model: { id: null, display_name: "Fable" }, surface: null } }
+    ]
+});
+
+test("parseUsage 200 limits[] -> per-model breakdown from scope.model (Fable)", () => {
+    const m = Claude.parseUsage(200, SAMPLE_200_LIMITS, () => null, CRED);
+    assert.equal(m.state, STATE.ok);
+    // windows still come from top-level five_hour/seven_day
+    assert.equal(m.windows.find(w => w.key === "session").percent, 92);
+    assert.equal(m.windows.find(w => w.key === "weekly").percent, 46);
+    // model breakdown must surface Fable at 9% even though seven_day_* are null
+    assert.equal(m.models.length, 1);
+    assert.equal(m.models[0].label, "Fable");
+    assert.equal(m.models[0].percent, 9);
+});
+
 console.log("\n" + passed + " passed");

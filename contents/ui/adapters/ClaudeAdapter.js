@@ -126,11 +126,26 @@ function parseUsage(httpStatus, responseText, getHeader, credState) {
     ];
 
     var models = [];
-    if (data.seven_day_sonnet) {
-        models.push(Usage.makeModelUsage("Sonnet", data.seven_day_sonnet.utilization || 0));
+    // 2026+ schema: per-model weekly usage lives in limits[] as scoped entries
+    // (kind "weekly_scoped") carrying scope.model.display_name. The legacy
+    // seven_day_<model> top-level keys are now null on these accounts.
+    var limits = Array.isArray(data.limits) ? data.limits : [];
+    for (var i = 0; i < limits.length; i++) {
+        var lim = limits[i] || {};
+        var model = (lim.scope && lim.scope.model) || null;
+        var name = model && model.display_name;
+        if (name) {
+            models.push(Usage.makeModelUsage(name, lim.percent || 0));
+        }
     }
-    if (data.seven_day_opus) {
-        models.push(Usage.makeModelUsage("Opus", data.seven_day_opus.utilization || 0));
+    // Backward-compat fallback: older API exposed seven_day_sonnet/opus directly.
+    if (models.length === 0) {
+        if (data.seven_day_sonnet) {
+            models.push(Usage.makeModelUsage("Sonnet", data.seven_day_sonnet.utilization || 0));
+        }
+        if (data.seven_day_opus) {
+            models.push(Usage.makeModelUsage("Opus", data.seven_day_opus.utilization || 0));
+        }
     }
 
     return Usage.makeModel(id, Object.assign({}, base, {
